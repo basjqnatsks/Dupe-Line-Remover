@@ -12,16 +12,12 @@ class removeDupes:
 		return i
 	def ReadFile(self):
 		with open(self.filename, 'rb') as f:
-			var2 = f.read().decode('ISO-8859-1')
-			var = var2.split('\r\n')
-			if len(var) == 1:
-				var = var2.split('\n')
-		return var
+			return f.read().decode('ISO-8859-1').replace("\r", '').split('\n')
 	def writes(self, data):
 		data = set(data)
 		with open(self.filename, 'wb') as f:
 			for x in data:
 				if x == '' or x == b'':
 					continue
-				f.write(x.encode() + b'\r\n')
+				f.write(x.encode() + b'\n')
 removeDupes()
